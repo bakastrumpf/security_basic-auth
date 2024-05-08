@@ -36,6 +36,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	@Override
+	// ovde podešavamo šta će da se desi ako neko pokuša da se uloguje s pogrešnim kredencijalima
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable()
 				.authorizeRequests().anyRequest().authenticated()
@@ -44,8 +45,11 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 //@Override
+// treba nam Autowired jer se u trenutku pozivanja metode inicijalizuje bilder
 //@Autowired
+// definišemo dozvoljene metode logovanja
 //protected void configure(AuthenticationManagerBuilder auth) throws Exception{
+// kad ne radimo s bazom već ručno postavljamo kredencijale
 //			auth.inMemoryAuthentication().withUser("testuser")
 //			.password("{noop}testpass").roles("admin");
 //		}
