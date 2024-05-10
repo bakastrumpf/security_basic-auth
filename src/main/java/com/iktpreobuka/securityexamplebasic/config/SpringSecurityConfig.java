@@ -44,19 +44,24 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 				.authenticationEntryPoint(authEntryPoint);
 	}
 
-//@Override
-// treba nam Autowired jer se u trenutku pozivanja metode inicijalizuje bilder
-//@Autowired
-// definišemo dozvoljene metode logovanja
-//protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-// kad ne radimo s bazom već ručno postavljamo kredencijale
-//			auth.inMemoryAuthentication().withUser("testuser")
-//			.password("{noop}testpass").roles("admin");
-//		}
+	// treba nam Autowired jer se u trenutku pozivanja metode inicijalizuje bilder
+	// kad ne radimo s bazom već ručno postavljamo kredencijale
+	// definišemo dozvoljene metode logovanja
+//	@Override
+//	@Autowired
+//	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//		auth.inMemoryAuthentication().withUser("testuser")
+//				.password("{noop}testpass").roles("admin");
+//	}
 
+	// metoda koja radi s bazom podataka
+	// izvlacimo kredencijale iz BP
 	@Autowired
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.jdbcAuthentication().usersByUsernameQuery(usersQuery).authoritiesByUsernameQuery(rolesQuery)
-				.passwordEncoder(passEncoder()).dataSource(dataSource);
+		auth.jdbcAuthentication().usersByUsernameQuery(usersQuery)
+				.authoritiesByUsernameQuery(rolesQuery)
+				.passwordEncoder(passEncoder())
+				.dataSource(dataSource);
 	}
+
 }
