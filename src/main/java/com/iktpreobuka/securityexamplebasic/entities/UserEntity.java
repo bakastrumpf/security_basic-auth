@@ -97,3 +97,5 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 			this.role = role;
 		}
 	}
+
+	// new comment
